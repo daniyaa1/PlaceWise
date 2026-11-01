@@ -247,3 +247,4 @@ npm test
 
 ## 10. License
 PlaceWise is developed under the ISC License.
+

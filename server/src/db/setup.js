@@ -9,3 +9,4 @@ try {
   console.error('[SETUP] Database setup failed:', err);
   process.exit(1);
 }
+

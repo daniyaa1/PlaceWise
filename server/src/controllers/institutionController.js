@@ -49,3 +49,4 @@ export async function getInstitutionById(req, res, next) {
     next(err);
   }
 }
+

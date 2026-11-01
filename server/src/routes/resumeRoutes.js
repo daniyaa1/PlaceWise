@@ -18,3 +18,4 @@ router.get('/:id/download', downloadResume);
 router.delete('/:id', requireRoles('STUDENT'), deleteResume);
 
 export default router;
+

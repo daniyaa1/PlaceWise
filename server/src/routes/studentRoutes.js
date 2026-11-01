@@ -23,3 +23,4 @@ router.post('/skills', requireRoles('STUDENT'), addStudentSkill);
 router.delete('/skills/:skillId', requireRoles('STUDENT'), removeStudentSkill);
 
 export default router;
+

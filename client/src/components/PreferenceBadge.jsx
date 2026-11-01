@@ -6,29 +6,29 @@ export default function PreferenceBadge({ mode, group }) {
 
   const configs = {
     TECHNICAL: {
-      bg: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+      bg: 'bg-indigo-500/10 text-indigo-700 dark:text-cyan-400 border-indigo-500/20',
       icon: Terminal,
       label: 'Technical'
     },
     NON_TECHNICAL: {
-      bg: 'bg-teal-50 text-teal-700 border-teal-200',
+      bg: 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20',
       icon: Briefcase,
       label: 'Non-Technical'
     },
     BOTH: {
-      bg: 'bg-purple-50 text-purple-700 border-purple-200',
+      bg: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/20',
       icon: Split,
-      label: 'Both Technical & Non-Tech'
+      label: 'Both Domains'
     },
     OPEN_TO_ALL: {
-      bg: 'bg-slate-100 text-slate-700 border-slate-200',
+      bg: 'bg-slate-500/10 text-slate-700 dark:text-slate-300 border-slate-500/20',
       icon: Compass,
-      label: 'Open to All Domains'
+      label: 'Open to All'
     }
   };
 
   const current = configs[value] || {
-    bg: 'bg-slate-100 text-slate-700 border-slate-200',
+    bg: 'bg-slate-500/10 text-slate-700 dark:text-slate-300 border-slate-500/20',
     icon: Compass,
     label: value
   };
@@ -36,7 +36,7 @@ export default function PreferenceBadge({ mode, group }) {
   const Icon = current.icon;
 
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${current.bg}`}>
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border backdrop-blur-md ${current.bg}`}>
       <Icon className="w-3 h-3 mr-1 shrink-0" />
       <span>{current.label}</span>
     </span>

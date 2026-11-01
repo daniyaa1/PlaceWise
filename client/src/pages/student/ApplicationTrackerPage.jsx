@@ -92,8 +92,8 @@ export default function ApplicationTrackerPage() {
       {/* Title & Filter Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Application Tracker</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Application Tracker</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time status tracking and audit history across campus and external opportunities.
           </p>
         </div>
@@ -104,10 +104,10 @@ export default function ApplicationTrackerPage() {
             <button
               key={s}
               onClick={() => setFilterStatus(s)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 filterStatus === s
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25'
+                  : 'glass-panel text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               {s.replace('_', ' ')}
@@ -125,18 +125,18 @@ export default function ApplicationTrackerPage() {
           onAction={() => window.location.href = '/opportunities'}
         />
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-          <div className="divide-y divide-slate-100">
+        <div className="glass-panel rounded-3xl dark:border-white/10 shadow-xl overflow-hidden">
+          <div className="divide-y divide-slate-100/60 dark:divide-white/5">
             {filtered.map((app) => (
-              <div key={app.id} className="p-5 sm:px-6 hover:bg-slate-50/60 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div key={app.id} className="p-5 sm:px-6 hover:bg-slate-50/40 dark:hover:bg-white/5 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1.5 min-w-0">
                   <div className="flex items-center flex-wrap gap-2">
-                    <span className="font-bold text-xs text-slate-800 flex items-center">
-                      <Building2 className="w-3.5 h-3.5 mr-1 text-slate-400" />
+                    <span className="font-bold text-xs text-slate-800 dark:text-slate-200 flex items-center">
+                      <Building2 className="w-3.5 h-3.5 mr-1 text-cyan-500" />
                       {app.company_name}
                     </span>
-                    <span className="text-slate-300">•</span>
-                    <span className="text-[10px] text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded">
+                    <span className="text-slate-300 dark:text-slate-700">•</span>
+                    <span className="text-[10px] text-slate-600 dark:text-slate-400 font-semibold bg-white/60 dark:bg-slate-800 px-2 py-0.5 rounded-md border border-slate-200/60 dark:border-white/10">
                       {app.source_type === 'CAMPUS' ? 'On-Campus Drive' : 'External Opening'}
                     </span>
                     <StatusPill status={app.status} />
@@ -144,17 +144,17 @@ export default function ApplicationTrackerPage() {
 
                   <Link
                     to={`/opportunities/${app.drive_id}`}
-                    className="text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors block truncate"
+                    className="text-base font-bold text-slate-900 dark:text-white hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors block truncate"
                   >
                     {app.drive_title}
                   </Link>
 
-                  <div className="flex items-center space-x-3 text-xs text-slate-500">
+                  <div className="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400">
                     <span>Applied on: {new Date(app.applied_at).toLocaleDateString()}</span>
                     {app.notes && (
                       <>
-                        <span className="text-slate-300">•</span>
-                        <span className="truncate max-w-xs text-slate-600 italic">"{app.notes}"</span>
+                        <span className="text-slate-300 dark:text-slate-700">•</span>
+                        <span className="truncate max-w-xs text-slate-600 dark:text-slate-300 italic">"{app.notes}"</span>
                       </>
                     )}
                   </div>
@@ -164,16 +164,16 @@ export default function ApplicationTrackerPage() {
                 <div className="flex items-center space-x-2 shrink-0">
                   <button
                     onClick={() => handleOpenHistory(app)}
-                    className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors flex items-center space-x-1"
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 bg-white/60 dark:bg-slate-800 border border-slate-200/60 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all flex items-center space-x-1 cursor-pointer"
                   >
-                    <History className="w-3.5 h-3.5 mr-1 text-slate-500" />
+                    <History className="w-3.5 h-3.5 mr-1 text-cyan-500" />
                     <span>Audit Trail</span>
                   </button>
 
                   {app.status !== 'WITHDRAWN' && app.status !== 'SELECTED' && app.status !== 'REJECTED' && (
                     <button
                       onClick={() => handleOpenUpdate(app)}
-                      className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 transition-colors"
+                      className="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 border border-rose-200 dark:border-rose-900/50 transition-all cursor-pointer"
                     >
                       Update / Withdraw
                     </button>
@@ -299,3 +299,4 @@ export default function ApplicationTrackerPage() {
     </div>
   );
 }
+

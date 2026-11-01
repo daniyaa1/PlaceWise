@@ -96,3 +96,4 @@ Base URL: `http://localhost:5005/api`
 | `POST` | `/api/platform/external-opportunities/:id/verify` | Platform Admin | Verifies external listing and stamps provenance |
 | `POST` | `/api/platform/external-opportunities/:id/reject` | Platform Admin | Rejects or marks external listing expired |
 | `GET` | `/api/platform/audit-logs` | Platform Admin | System-wide audit log trail |
+

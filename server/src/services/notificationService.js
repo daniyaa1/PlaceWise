@@ -47,3 +47,4 @@ export async function notifyUsersOfInstitution({
     console.error('[NOTIFICATION_SERVICE] Batch institution notification error:', err);
   }
 }
+

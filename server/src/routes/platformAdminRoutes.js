@@ -24,3 +24,4 @@ router.post('/external-opportunities/:id/reject', rejectExternalOpportunity);
 router.get('/audit-logs', listAuditLogs);
 
 export default router;
+

@@ -65,3 +65,4 @@ export function evaluateSkillCompatibility({ studentSkills = [], jobSkills = [] 
     missingDesirable
   };
 }
+

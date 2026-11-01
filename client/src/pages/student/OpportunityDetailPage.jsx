@@ -110,50 +110,50 @@ export default function OpportunityDetailPage() {
       </div>
 
       {/* Main Dossier Header Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+      <div className="glass-panel rounded-3xl dark:border-white/10 p-6 sm:p-8 shadow-xl">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200/60 dark:border-white/10">
           <div className="space-y-2">
             <div className="flex items-center flex-wrap gap-2">
-              <span className="font-bold text-sm text-slate-900 flex items-center">
-                <Building2 className="w-4 h-4 mr-1 text-slate-500" />
+              <span className="font-bold text-sm text-slate-900 dark:text-white flex items-center">
+                <Building2 className="w-4 h-4 mr-1 text-cyan-500" />
                 {drive.company_name}
               </span>
 
               {drive.is_demo_data && (
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20">
                   DEMO DATA RECORD
                 </span>
               )}
 
               {drive.source_type === 'CAMPUS' ? (
-                <span className="px-2 py-0.5 rounded text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">
                   Campus Drive ({drive.institution_name || 'College'})
                 </span>
               ) : (
-                <span className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-white/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/10">
                   External Opening ({drive.college_scope?.replace(/_/g, ' ')})
                 </span>
               )}
 
               {drive.verification_status === 'VERIFIED' && (
-                <span className="inline-flex items-center text-xs text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                <span className="inline-flex items-center text-xs text-emerald-500 font-semibold bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">
                   <CheckCircle className="w-3 h-3 mr-1" />
                   Verified Listing
                 </span>
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               {drive.title}
             </h1>
 
             <div className="flex items-center flex-wrap gap-2 pt-1">
-              <span className="text-xs text-slate-700 font-medium bg-slate-100 px-2.5 py-0.5 rounded">
+              <span className="text-xs text-slate-700 dark:text-slate-300 font-medium bg-white/60 dark:bg-slate-800 px-2.5 py-0.5 rounded-md border border-slate-200/60 dark:border-white/10">
                 Domain: {drive.career_domain}
               </span>
               <PreferenceBadge group={drive.preference_group} />
-              <span className="text-xs text-slate-600 font-medium">
-                Coding Intensity: <strong>{drive.coding_intensity}</strong>
+              <span className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+                Coding Intensity: <strong className="text-slate-900 dark:text-white">{drive.coding_intensity}</strong>
               </span>
             </div>
           </div>
@@ -161,8 +161,8 @@ export default function OpportunityDetailPage() {
           {/* Action Callout */}
           <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0">
             {existingApp ? (
-              <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-right">
-                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">
+              <div className="glass-panel p-3.5 rounded-2xl text-right">
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider block mb-1">
                   Your Application Status
                 </span>
                 <StatusPill status={existingApp.status} />
@@ -170,7 +170,7 @@ export default function OpportunityDetailPage() {
             ) : (
               <button
                 onClick={() => setTrackModalOpen(true)}
-                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-xs"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white transition-all shadow-lg shadow-cyan-500/25 cursor-pointer"
               >
                 Track This Opportunity
               </button>
@@ -181,7 +181,7 @@ export default function OpportunityDetailPage() {
                 href={drive.official_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-xs font-semibold text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center text-xs font-bold text-cyan-500 hover:text-cyan-400"
               >
                 <span>Official Careers Page</span>
                 <ExternalLink className="w-3.5 h-3.5 ml-1" />
@@ -192,33 +192,33 @@ export default function OpportunityDetailPage() {
 
         {/* Attribute Pills Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Compensation</span>
-            <span className="font-extrabold text-sm text-slate-900 flex items-center">
-              <Banknote className="w-4 h-4 mr-1 text-slate-400" />
+          <div className="glass-panel p-3.5 rounded-2xl">
+            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-1">Compensation</span>
+            <span className="font-extrabold text-sm text-slate-900 dark:text-white flex items-center">
+              <Banknote className="w-4 h-4 mr-1 text-cyan-500" />
               {formatCompensation(drive.compensation_min, drive.compensation_max)}
             </span>
           </div>
 
-          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Location & Mode</span>
-            <span className="font-extrabold text-sm text-slate-900 flex items-center truncate">
-              <MapPin className="w-4 h-4 mr-1 text-slate-400 shrink-0" />
+          <div className="glass-panel p-3.5 rounded-2xl">
+            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-1">Location & Mode</span>
+            <span className="font-extrabold text-sm text-slate-900 dark:text-white flex items-center truncate">
+              <MapPin className="w-4 h-4 mr-1 text-cyan-500 shrink-0" />
               {drive.location} ({drive.work_mode?.toLowerCase()})
             </span>
           </div>
 
-          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Application Deadline</span>
-            <span className="font-extrabold text-sm text-slate-900 flex items-center">
-              <Calendar className="w-4 h-4 mr-1 text-slate-400" />
+          <div className="glass-panel p-3.5 rounded-2xl">
+            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-1">Application Deadline</span>
+            <span className="font-extrabold text-sm text-slate-900 dark:text-white flex items-center">
+              <Calendar className="w-4 h-4 mr-1 text-cyan-500" />
               {new Date(drive.application_deadline).toLocaleDateString()}
             </span>
           </div>
 
-          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Employment Type</span>
-            <span className="font-extrabold text-sm text-slate-900">
+          <div className="glass-panel p-3.5 rounded-2xl">
+            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-1">Employment Type</span>
+            <span className="font-extrabold text-sm text-slate-900 dark:text-white">
               {drive.employment_type?.replace('_', ' ')}
             </span>
           </div>
@@ -476,3 +476,4 @@ export default function OpportunityDetailPage() {
     </div>
   );
 }
+

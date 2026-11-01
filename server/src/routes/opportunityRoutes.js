@@ -32,3 +32,4 @@ router.get('/:id', (req, res, next) => {
 router.get('/:id/eligibility', authGuard, checkOpportunityEligibility);
 
 export default router;
+

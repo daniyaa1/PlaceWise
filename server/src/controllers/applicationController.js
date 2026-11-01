@@ -208,3 +208,4 @@ export async function updateApplicationStatus(req, res, next) {
     conn.release();
   }
 }
+

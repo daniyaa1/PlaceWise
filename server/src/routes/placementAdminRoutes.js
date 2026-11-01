@@ -26,3 +26,4 @@ router.get('/companies', listCompanies);
 router.post('/companies', createCompany);
 
 export default router;
+

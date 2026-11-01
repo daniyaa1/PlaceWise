@@ -456,3 +456,4 @@ export async function getSkillGaps(req, res, next) {
     next(err);
   }
 }
+

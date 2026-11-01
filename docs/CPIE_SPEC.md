@@ -93,3 +93,4 @@ Across all currently `ELIGIBLE` opportunities for student $S$:
 $$\text{Frequency}(sk) = \sum_{d \in \text{EligibleDrives}(S)} \mathbf{1}_{\{sk \in \text{DesirableSkills}(d) \land sk \notin \text{Skills}(S)\}}$$
 
 Returns the ranked distribution of missing competencies with explicit user-facing disclaimers that this is an opportunity-frequency impact indicator, not an employment guarantee.
+

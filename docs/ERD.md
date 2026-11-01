@@ -100,3 +100,4 @@ erDiagram
 - `verification_status` (ENUM: `VERIFIED`, `PENDING_VERIFICATION`, `UNVERIFIED`, `EXPIRED`)
 - `verified_by_user_id` (INT, NULL, FK -> users.id)
 - `last_verified_date` (DATE, NULL)
+

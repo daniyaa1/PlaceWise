@@ -124,100 +124,100 @@ export default function OpportunityDiscoveryPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Opportunity Discovery</h1>
-        <p className="text-xs text-slate-500 mt-1">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Opportunity Discovery</h1>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Explore campus recruitment drives and verified off-campus career openings.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
+      <div className="glass-panel p-5 rounded-3xl dark:border-white/10 shadow-xl space-y-4">
         {/* Search Input Row */}
         <form onSubmit={handleSearchSubmit} className="flex gap-2">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search companies, role titles, keywords, locations..."
-              className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30"
             />
           </div>
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl font-bold text-xs bg-slate-900 text-white hover:bg-slate-800 transition-colors shadow-xs"
+            className="px-5 py-2.5 rounded-xl font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white transition-all shadow-md shadow-cyan-500/25 cursor-pointer"
           >
             Search
           </button>
         </form>
 
         {/* Filter Selects Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2 border-t border-slate-100">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-200/60 dark:border-white/10">
           <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Source</label>
+            <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Source</label>
             <select
               value={source}
               onChange={(e) => setSource(e.target.value)}
-              className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/80 text-slate-900 dark:text-white"
             >
-              <option value="ALL">All Sources</option>
-              <option value="CAMPUS">Campus Drives Only</option>
-              <option value="EXTERNAL">External Listings</option>
+              <option value="ALL" className="dark:bg-slate-900">All Sources</option>
+              <option value="CAMPUS" className="dark:bg-slate-900">Campus Drives Only</option>
+              <option value="EXTERNAL" className="dark:bg-slate-900">External Listings</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Career Domain</label>
+            <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Career Domain</label>
             <select
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
-              className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/80 text-slate-900 dark:text-white"
             >
-              <option value="ALL">All Career Domains</option>
+              <option value="ALL" className="dark:bg-slate-900">All Career Domains</option>
               {careerDomains.map(d => (
-                <option key={d} value={d}>{d}</option>
+                <option key={d} value={d} className="dark:bg-slate-900">{d}</option>
               ))}
             </select>
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Preference Group</label>
+            <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Preference Group</label>
             <select
               value={preferenceGroup}
               onChange={(e) => setPreferenceGroup(e.target.value)}
-              className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/80 text-slate-900 dark:text-white"
             >
-              <option value="ALL">All Preference Groups</option>
-              <option value="TECHNICAL">Technical Roles</option>
-              <option value="NON_TECHNICAL">Non-Technical Roles</option>
+              <option value="ALL" className="dark:bg-slate-900">All Groups</option>
+              <option value="TECHNICAL" className="dark:bg-slate-900">Technical Roles</option>
+              <option value="NON_TECHNICAL" className="dark:bg-slate-900">Non-Technical Roles</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Work Mode</label>
+            <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Work Mode</label>
             <select
               value={workMode}
               onChange={(e) => setWorkMode(e.target.value)}
-              className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/80 text-slate-900 dark:text-white"
             >
-              <option value="ALL">All Modes</option>
-              <option value="IN_OFFICE">In-Office</option>
-              <option value="HYBRID">Hybrid</option>
-              <option value="REMOTE">Remote</option>
+              <option value="ALL" className="dark:bg-slate-900">All Modes</option>
+              <option value="IN_OFFICE" className="dark:bg-slate-900">In-Office</option>
+              <option value="HYBRID" className="dark:bg-slate-900">Hybrid</option>
+              <option value="REMOTE" className="dark:bg-slate-900">Remote</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Sort By</label>
+            <label className="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Sort By</label>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 bg-white"
+              className="w-full px-2.5 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/80 text-slate-900 dark:text-white"
             >
-              <option value="recent">Recently Posted</option>
-              <option value="deadline_asc">Deadline (Earliest)</option>
-              <option value="comp_desc">Compensation (High to Low)</option>
+              <option value="recent" className="dark:bg-slate-900">Recently Posted</option>
+              <option value="deadline_asc" className="dark:bg-slate-900">Deadline (Earliest)</option>
+              <option value="comp_desc" className="dark:bg-slate-900">Compensation (High)</option>
             </select>
           </div>
         </div>
@@ -225,13 +225,13 @@ export default function OpportunityDiscoveryPage() {
         {/* Clear filters pill */}
         {(source !== 'ALL' || domain !== 'ALL' || preferenceGroup !== 'ALL' || workMode !== 'ALL' || search) && (
           <div className="flex items-center space-x-2 pt-2">
-            <span className="text-xs text-slate-500">Filtered view active</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">Filtered view active</span>
             <button
               onClick={handleClearFilters}
-              className="inline-flex items-center text-xs font-semibold text-rose-600 hover:text-rose-800"
+              className="text-xs font-bold text-cyan-500 hover:text-cyan-400 flex items-center space-x-1 cursor-pointer"
             >
-              <X className="w-3.5 h-3.5 mr-0.5" />
-              Reset filters
+              <X className="w-3.5 h-3.5" />
+              <span>Reset filters</span>
             </button>
           </div>
         )}
@@ -302,47 +302,47 @@ export default function OpportunityDiscoveryPage() {
             )}
 
             <div>
-              <p className="text-xs text-slate-600 font-medium">Role: <span className="font-bold text-slate-900">{selectedDrive.title}</span></p>
-              <p className="text-[11px] text-slate-500">Source: {selectedDrive.source_type === 'CAMPUS' ? 'On-Campus Drive' : 'External Listing'}</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Role: <span className="font-bold text-slate-900 dark:text-white">{selectedDrive.title}</span></p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">Source: {selectedDrive.source_type === 'CAMPUS' ? 'On-Campus Drive' : 'External Listing'}</p>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Application Stage</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Application Stage</label>
               <select
                 value={trackStatus}
                 onChange={(e) => setTrackStatus(e.target.value)}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 bg-white"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/90 text-slate-900 dark:text-white"
               >
-                <option value="INTERESTED">Bookmarked / Interested</option>
-                <option value="APPLIED">Submitted Application</option>
-                <option value="ASSESSMENT">Online Assessment Scheduled</option>
-                <option value="INTERVIEW">Interview Round</option>
+                <option value="INTERESTED" className="dark:bg-slate-900">Bookmarked / Interested</option>
+                <option value="APPLIED" className="dark:bg-slate-900">Submitted Application</option>
+                <option value="ASSESSMENT" className="dark:bg-slate-900">Online Assessment Scheduled</option>
+                <option value="INTERVIEW" className="dark:bg-slate-900">Interview Round</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Personal Notes (Optional)</label>
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Personal Notes (Optional)</label>
               <textarea
                 value={trackNotes}
                 onChange={(e) => setTrackNotes(e.target.value)}
                 placeholder="e.g. Applied via official portal, referral link."
                 rows={3}
-                className="w-full px-3 py-2 text-sm rounded-lg border border-slate-300"
+                className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30"
               />
             </div>
 
-            <div className="flex justify-end space-x-2 pt-3 border-t border-slate-100">
+            <div className="flex justify-end space-x-2 pt-3 border-t border-slate-200/60 dark:border-white/10">
               <button
                 type="button"
                 onClick={() => setTrackModalOpen(false)}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={trackSubmitting}
-                className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-60 shadow-xs"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white disabled:opacity-60 shadow-lg shadow-cyan-500/25 cursor-pointer"
               >
                 {trackSubmitting ? 'Saving...' : 'Confirm Tracking'}
               </button>
@@ -353,3 +353,4 @@ export default function OpportunityDiscoveryPage() {
     </div>
   );
 }
+

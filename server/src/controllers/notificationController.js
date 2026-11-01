@@ -85,3 +85,4 @@ export async function dismissNotification(req, res, next) {
     next(err);
   }
 }
+

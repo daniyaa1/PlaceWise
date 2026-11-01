@@ -46,3 +46,4 @@ export function analyzeSkillGaps({ student, eligibleDrives = [] }) {
     disclaimer: 'This skill-gap analysis is an opportunity-impact indicator based on currently active, eligible opportunities. It highlights skills that could expand your profile competitiveness, not a guarantee of employment.'
   };
 }
+

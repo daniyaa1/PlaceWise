@@ -7,3 +7,4 @@ router.get('/', listInstitutions);
 router.get('/:id', getInstitutionById);
 
 export default router;
+

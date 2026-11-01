@@ -101,3 +101,4 @@ export const api = {
   rejectExternalOpportunity: (id, reason) => request(`/platform/external-opportunities/${id}/reject`, { method: 'POST', body: JSON.stringify({ reason }) }),
   getAuditLogs: () => request('/platform/audit-logs')
 };
+

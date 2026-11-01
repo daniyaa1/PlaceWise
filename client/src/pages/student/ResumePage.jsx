@@ -111,32 +111,32 @@ export default function ResumePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Resume Management</h1>
-        <p className="text-xs text-slate-500 mt-1">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Resume Management</h1>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Upload and maintain verified resumes for your campus drives and external applications.
         </p>
       </div>
 
       {statusMsg && (
-        <div className={`p-4 rounded-xl text-xs flex items-center space-x-2 ${statusMsg.type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'}`}>
-          {statusMsg.type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
+        <div className={`p-4 rounded-2xl text-xs flex items-center space-x-2 ${statusMsg.type === 'success' ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800'}`}>
+          {statusMsg.type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" /> : <AlertCircle className="w-4 h-4 shrink-0 text-rose-500" />}
           <span>{statusMsg.text}</span>
         </div>
       )}
 
       {/* Upload Dropzone */}
-      <div className="bg-white rounded-2xl border-2 border-dashed border-slate-300 hover:border-indigo-400 transition-colors p-8 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-3">
+      <div className="glass-panel rounded-3xl border-2 border-dashed border-slate-300/80 dark:border-white/10 hover:border-cyan-500/60 dark:hover:border-cyan-500/60 transition-all p-8 text-center shadow-xl">
+        <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center mx-auto mb-3">
           <UploadCloud className="w-6 h-6" />
         </div>
-        <h3 className="text-sm font-bold text-slate-900 mb-1">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
           {uploading ? 'Uploading document...' : 'Upload your updated resume'}
         </h3>
-        <p className="text-xs text-slate-500 mb-4 max-w-sm mx-auto">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 max-w-sm mx-auto">
           Supported formats: PDF, DOCX (Max 5MB). Files are securely encrypted and stored privately outside public directories.
         </p>
 
-        <label className="inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition-colors cursor-pointer shadow-xs">
+        <label className="inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white transition-all cursor-pointer shadow-lg shadow-cyan-500/25">
           <input
             type="file"
             accept=".pdf,.doc,.docx"
@@ -149,10 +149,10 @@ export default function ResumePage() {
       </div>
 
       {/* Uploaded Documents List */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-        <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between">
-          <span className="font-bold text-sm text-slate-900">Your Document Vault</span>
-          <span className="text-xs text-slate-500">{resumes.length} document{resumes.length === 1 ? '' : 's'}</span>
+      <div className="glass-panel rounded-3xl dark:border-white/10 shadow-xl overflow-hidden">
+        <div className="p-4 sm:p-5 border-b border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+          <span className="font-bold text-sm text-slate-900 dark:text-white">Your Document Vault</span>
+          <span className="text-xs text-slate-500 dark:text-slate-400">{resumes.length} document{resumes.length === 1 ? '' : 's'}</span>
         </div>
 
         {resumes.length === 0 ? (
@@ -162,20 +162,20 @@ export default function ResumePage() {
             icon={FileText}
           />
         ) : (
-          <div className="divide-y divide-slate-100">
+          <div className="divide-y divide-slate-100/60 dark:divide-white/5">
             {resumes.map((r) => (
-              <div key={r.id} className="p-4 sm:px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <div key={r.id} className="p-4 sm:px-6 flex items-center justify-between hover:bg-slate-50/40 dark:hover:bg-white/5 transition-all">
                 <div className="flex items-center space-x-3.5 min-w-0">
-                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${r.is_active ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-slate-100 text-slate-500'}`}>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${r.is_active ? 'bg-cyan-500/10 text-cyan-500 border border-cyan-500/30' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                     <FileCheck className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center space-x-2">
-                      <span className="font-bold text-xs text-slate-900 truncate block">
+                      <span className="font-bold text-xs text-slate-900 dark:text-white truncate block">
                         {r.file_name}
                       </span>
                       {r.is_active ? (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                           Active
                         </span>
                       ) : null}
@@ -210,3 +210,4 @@ export default function ResumePage() {
     </div>
   );
 }
+

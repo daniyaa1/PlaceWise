@@ -319,3 +319,4 @@ describe('PlaceWise CPIE — Career Preferences & Skill Compatibility Tests', ()
     assert.match(gapReport.disclaimer, /opportunity-impact indicator/);
   });
 });
+
