@@ -57,11 +57,14 @@ export default function App() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0b0d17] text-slate-900 dark:text-slate-100 transition-colors duration-300 relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
-      {/* Ambient background mesh glow effects */}
-      <div className="ambient-glow bg-indigo-600/20 -top-32 -left-32" />
-      <div className="ambient-glow bg-cyan-500/15 top-1/3 -right-32" />
-      <div className="ambient-glow bg-purple-600/15 bottom-10 left-1/4" />
+    <div className="min-h-screen flex flex-col bg-[#f0f4f9] dark:bg-[#080b14] text-slate-900 dark:text-slate-100 transition-colors duration-400 relative overflow-x-hidden selection:bg-cyan-500 selection:text-white">
+      {/* Dynamic Ambient Glass Lights (Shine through frosted panels like Apple VisionOS / Dribbble) */}
+      <div className="ambient-glow-mesh">
+        <div className="ambient-orb w-[650px] h-[650px] bg-gradient-to-tr from-indigo-600/40 via-purple-600/30 to-blue-500/20 -top-40 -left-40" />
+        <div className="ambient-orb w-[600px] h-[600px] bg-gradient-to-br from-cyan-500/35 via-teal-500/25 to-blue-600/20 top-1/4 -right-40" />
+        <div className="ambient-orb w-[700px] h-[700px] bg-gradient-to-tr from-pink-600/25 via-purple-600/30 to-indigo-600/25 -bottom-40 left-1/3" />
+        <div className="ambient-orb w-[500px] h-[500px] bg-gradient-to-r from-emerald-500/20 to-teal-500/15 top-2/3 -left-20" />
+      </div>
 
       {/* Main Top Navigation Header */}
       <Navbar />

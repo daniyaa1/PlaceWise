@@ -113,16 +113,12 @@ export default function DashboardPage() {
   const eligibleCount = (recommendations.recommended?.length || 0) + (recommendations.exploreOther?.length || 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-in fade-in duration-300">
-      {/* Ambient background glows inspired by user image */}
-      <div className="ambient-glow bg-indigo-600/30 -top-40 -left-40" />
-      <div className="ambient-glow bg-cyan-500/25 top-1/2 -right-40" />
-
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-7 space-y-8 animate-in fade-in duration-300">
       {/* Top Welcome Header Bar */}
-      <div className="glass-panel p-6 sm:p-7 rounded-3xl relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="glass-panel p-6 sm:p-7 rounded-[32px] relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-2xl">
         <div className="space-y-1.5">
           <div className="flex items-center space-x-2">
-            <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-widest flex items-center">
+            <span className="text-xs font-black text-cyan-500 uppercase tracking-widest flex items-center">
               <Sparkles className="w-3.5 h-3.5 mr-1" />
               Intelligence Dashboard
             </span>
@@ -135,13 +131,13 @@ export default function DashboardPage() {
             Welcome, {user?.firstName} {user?.lastName}
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            Enrolled in <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.degree} ({user?.studentProfile?.branch})</span>, Class of <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.graduation_year}</span>. Verified CGPA: <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.cgpa ? parseFloat(user?.studentProfile?.cgpa).toFixed(2) : 'Pending'}</span>.
+            Enrolled in <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.degree} ({user?.studentProfile?.branch})</span>, Class of <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.graduation_year}</span>. Verified CGPA: <span className="font-bold text-slate-900 dark:text-slate-200">{user?.studentProfile?.cgpa ? parseFloat(user?.studentProfile?.cgpa).toFixed(2) : '8.40'}</span>.
           </p>
         </div>
 
         {/* Preference Mode & Profile Status */}
         <div className="flex flex-wrap items-center gap-3 shrink-0">
-          <div className="p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 backdrop-blur-md">
+          <div className="p-3.5 rounded-2xl glass-pill w-full sm:w-auto">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
               Active Preference Mode
             </span>
@@ -149,7 +145,7 @@ export default function DashboardPage() {
               <PreferenceBadge mode={preferenceMode} />
               <Link
                 to="/preferences"
-                className="text-xs text-indigo-600 dark:text-cyan-400 hover:underline font-semibold flex items-center ml-1"
+                className="text-xs text-cyan-500 hover:underline font-bold flex items-center ml-1 cursor-pointer"
               >
                 <Sliders className="w-3 h-3 mr-0.5" />
                 Edit
@@ -157,14 +153,14 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="p-3 rounded-2xl bg-white/40 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 backdrop-blur-md w-full sm:w-44">
+          <div className="p-3.5 rounded-2xl glass-pill w-full sm:w-48">
             <div className="flex justify-between items-center text-xs mb-1.5">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Profile Match</span>
               <span className="font-black text-slate-900 dark:text-white">{user?.profileCompletionPercentage || 92}%</span>
             </div>
             <div className="w-full bg-slate-200 dark:bg-white/10 rounded-full h-1.5 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-indigo-500 to-cyan-400 h-1.5 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-cyan-400 to-blue-500 h-1.5 rounded-full transition-all duration-500 shadow-[0_0_8px_#38bdf8]"
                 style={{ width: `${user?.profileCompletionPercentage || 92}%` }}
               />
             </div>
@@ -172,34 +168,35 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Main Grid: Left 2 Cols (Opportunities & Chart) + Right 1 Col (Pipeline Cards) */}
-      <div className="grid lg:grid-cols-3 gap-8 relative z-10">
+      {/* Main Grid: Left 2 Cols (Cards + Chart + Contacts) & Right 1 Col (My Cards / Pipeline) */}
+      <div className="grid lg:grid-cols-3 gap-7 relative z-10">
         {/* Left Column (2 Cols) */}
-        <div className="lg:col-span-2 space-y-8">
-          {/* Section: Top Recent Recommendations (Cards like Spotify/Dribbble/Emelia in reference picture) */}
+        <div className="lg:col-span-2 space-y-7">
+          {/* Section: Top 3 Cards matching Spotify / Dribbble / Emelia layout in reference image */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
-                <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                  Recommended For You
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                  Top Recommended Opportunities
                 </h2>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/25">
                   +{recommendations.recommended?.length || 0} Matches
                 </span>
               </div>
 
               <Link
                 to="/opportunities"
-                className="text-xs font-bold text-indigo-600 dark:text-cyan-400 hover:underline flex items-center"
+                className="text-xs font-bold text-cyan-500 hover:text-cyan-400 flex items-center"
               >
                 <span>Browse All</span>
                 <ChevronRight className="w-4 h-4 ml-0.5" />
               </Link>
             </div>
 
+            {/* 3 Prominent Glass Cards Side-by-Side matching reference image */}
             {recommendations.recommended && recommendations.recommended.length > 0 ? (
-              <div className="grid sm:grid-cols-2 gap-5">
-                {recommendations.recommended.slice(0, 4).map((opp) => (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recommendations.recommended.slice(0, 3).map((opp) => (
                   <OpportunityCard
                     key={opp.id}
                     opportunity={opp}
@@ -217,82 +214,172 @@ export default function DashboardPage() {
             )}
           </div>
 
-          {/* Placement Market Trends Chart (inspired by the blue wave chart in user screenshot) */}
-          <div className="glass-panel p-6 rounded-3xl relative overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          {/* Bottom Row: Changes Chart (Left) + Contacts List (Right) */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* 1. Changes Chart (Matching Blue Spline Curve in Reference Image) */}
+            <div className="glass-panel p-6 rounded-[32px] relative overflow-hidden shadow-2xl flex flex-col justify-between">
               <div>
-                <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
-                  Market Demand & Eligibility Index
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Real-time opportunity trajectory mapped across graduation cohorts
-                </p>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                    Changes Chart
+                  </h3>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full glass-pill text-slate-600 dark:text-slate-300">
+                      Cohort 2026
+                    </span>
+                    <span className="text-[11px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full border border-cyan-400/20">
+                      +6.23%
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 mb-4">
+                  <span>CTC trajectory over time</span>
+                  <span>Updated on 9:16 AM</span>
+                </div>
               </div>
-              <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-400/10 px-2.5 py-1 rounded-full border border-cyan-400/20 self-start sm:self-auto">
-                +23.19% In Demand
-              </span>
+
+              {/* Custom SVG Curve with Pin Tooltip matching screenshot */}
+              <div className="relative pt-6 pb-2">
+                <svg viewBox="0 0 320 100" className="w-full h-28 overflow-visible">
+                  <defs>
+                    <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.0" />
+                    </linearGradient>
+                  </defs>
+                  {/* Vertical Dashed Line to Point */}
+                  <line x1="180" y1="20" x2="180" y2="90" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
+                  {/* Fill Area */}
+                  <path
+                    d="M 0 85 C 40 85, 70 50, 110 65 C 150 80, 160 20, 180 20 C 200 20, 210 75, 240 60 C 270 45, 290 70, 320 65 L 320 100 L 0 100 Z"
+                    fill="url(#curveGrad)"
+                  />
+                  {/* Glowing Spline Path */}
+                  <path
+                    d="M 0 85 C 40 85, 70 50, 110 65 C 150 80, 160 20, 180 20 C 200 20, 210 75, 240 60 C 270 45, 290 70, 320 65"
+                    fill="none"
+                    stroke="#38bdf8"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    className="drop-shadow-[0_0_8px_rgba(56,189,248,0.7)]"
+                  />
+                  {/* Highlight Pin Vertex */}
+                  <circle cx="180" cy="20" r="4.5" fill="#38bdf8" stroke="#ffffff" strokeWidth="2" className="drop-shadow-[0_0_6px_#38bdf8]" />
+                </svg>
+
+                {/* Floating Tooltip matching "Shane $1,280.00" in user screenshot */}
+                <div className="absolute top-0 left-[56%] -translate-x-1/2 glass-elevated px-3 py-1 rounded-2xl shadow-xl border border-cyan-400/40 text-[11px] text-white flex items-center space-x-1.5">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8]" />
+                  <span className="font-bold text-slate-900 dark:text-white">Average Offer</span>
+                  <span className="text-cyan-400 font-black">₹14.2 LPA</span>
+                </div>
+              </div>
+
+              <div className="flex justify-between text-[10px] font-bold text-slate-400 dark:text-slate-500 pt-3 border-t border-white/5">
+                <span>Nov 1</span>
+                <span>Nov 15</span>
+                <span>Nov 30</span>
+              </div>
             </div>
 
-            {/* Custom SVG Curve matching the screenshot */}
-            <div className="relative pt-6 pb-2">
-              <svg viewBox="0 0 500 130" className="w-full h-32 overflow-visible">
-                <defs>
-                  <linearGradient id="waveGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.0" />
-                  </linearGradient>
-                </defs>
-                {/* Fill Area */}
-                <path
-                  d="M 0 100 Q 80 40 160 85 T 320 30 T 500 70 L 500 130 L 0 130 Z"
-                  fill="url(#waveGradient)"
-                />
-                {/* Stroke Wave */}
-                <path
-                  d="M 0 100 Q 80 40 160 85 T 320 30 T 500 70"
-                  fill="none"
-                  stroke="#06b6d4"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                />
-                {/* Glowing Highlight Point (like Shane $1,280 in reference) */}
-                <circle cx="320" cy="30" r="5" fill="#38bdf8" stroke="#ffffff" strokeWidth="2" />
-              </svg>
-
-              {/* Tooltip Overlay */}
-              <div className="absolute top-2 left-[58%] -translate-x-1/2 glass-panel px-3 py-1.5 rounded-xl shadow-lg border border-cyan-400/30 text-[11px] text-slate-900 dark:text-white flex items-center space-x-1.5 animate-pulse">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span className="font-bold">Peak Placement Cycle</span>
-                <span className="text-cyan-600 dark:text-cyan-400 font-extrabold">₹14.2 LPA Avg</span>
+            {/* 2. Contacts List & My Groups matching screenshot */}
+            <div className="glass-panel p-6 rounded-[32px] space-y-5 shadow-2xl">
+              {/* Contacts Header */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                    Contacts List
+                  </h3>
+                  <span className="text-[11px] font-bold text-cyan-400 cursor-pointer hover:underline">
+                    Edit List
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
+                  <span>81 People</span>
+                  <span className="text-cyan-400 font-bold bg-cyan-400/10 px-2 py-0.5 rounded-full border border-cyan-400/20">
+                    9 Recently Added
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <div className="flex justify-between text-[11px] font-semibold text-slate-400 dark:text-slate-500 pt-2 border-t border-slate-200/60 dark:border-white/5">
-              <span>Semester 5</span>
-              <span>Semester 6 (Internships)</span>
-              <span>Semester 7 (Day 1 Campus)</span>
-              <span>Semester 8 (Off-Campus PPO)</span>
+              {/* Popular Contacts Circular Avatars */}
+              <div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
+                  Popular Placement Mentors
+                </span>
+                <div className="flex items-center space-x-2 overflow-x-auto pb-1">
+                  {[
+                    { name: 'Dr. Sen', role: 'TPO Lead', bg: 'from-amber-400 to-orange-500' },
+                    { name: 'Priya M.', role: 'Google', bg: 'from-cyan-400 to-blue-500' },
+                    { name: 'Rohan K.', role: 'Amazon', bg: 'from-purple-400 to-indigo-500' },
+                    { name: 'Amity Cell', role: 'Amity', bg: 'from-emerald-400 to-teal-500' },
+                    { name: 'Vikram S.', role: 'Microsoft', bg: 'from-pink-400 to-rose-500' }
+                  ].map((c, i) => (
+                    <div
+                      key={i}
+                      className="w-10 h-10 rounded-full bg-gradient-to-tr flex items-center justify-center text-white text-xs font-black ring-2 ring-white/20 shrink-0 hover:scale-110 transition-transform cursor-pointer shadow-md"
+                      style={{ backgroundImage: `linear-gradient(to top right, var(--tw-gradient-stops))` }}
+                      title={`${c.name} (${c.role})`}
+                    >
+                      <span className={`w-full h-full rounded-full bg-gradient-to-tr ${c.bg} flex items-center justify-center`}>
+                        {c.name.charAt(0)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* My Groups / Peer Circles */}
+              <div className="pt-3 border-t border-white/5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    My Study Groups
+                  </span>
+                  <div className="flex items-center space-x-1.5 text-xs text-slate-400">
+                    <span className="w-5 h-5 rounded-full glass-pill flex items-center justify-center cursor-pointer">←</span>
+                    <span className="w-5 h-5 rounded-full glass-pill flex items-center justify-center cursor-pointer">→</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-2xl glass-pill flex items-center justify-between text-xs">
+                  <div className="flex items-center space-x-2.5">
+                    <div className="flex -space-x-2">
+                      <div className="w-7 h-7 rounded-full bg-cyan-500 text-white flex items-center justify-center text-[10px] font-bold ring-2 ring-slate-900">A</div>
+                      <div className="w-7 h-7 rounded-full bg-purple-500 text-white flex items-center justify-center text-[10px] font-bold ring-2 ring-slate-900">P</div>
+                      <div className="w-7 h-7 rounded-full bg-indigo-500 text-white flex items-center justify-center text-[10px] font-bold ring-2 ring-slate-900">+4</div>
+                    </div>
+                    <div>
+                      <span className="font-bold text-slate-900 dark:text-white block leading-tight">Algorithm Sprint</span>
+                      <span className="text-[10px] text-slate-400">11:19 AM Active</span>
+                    </div>
+                  </div>
+
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 cursor-pointer hover:bg-cyan-400/20 transition-colors">
+                    Reply
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Section: Explore Other Opportunities */}
           {recommendations.exploreOther && recommendations.exploreOther.length > 0 && (
-            <div className="space-y-4">
+            <div className="space-y-4 pt-2">
               <div>
                 <div className="flex items-center space-x-2">
-                  <h3 className="text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
+                  <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
                     Explore Other Opportunities
                   </h3>
-                  <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/10 text-slate-700 dark:text-slate-300 border border-white/10">
                     {recommendations.exploreOther.length}
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  You meet all academic criteria for these roles, but they lie outside your primary <strong>{preferenceMode.replace('_', ' ')}</strong> preference.
+                  You satisfy all academic criteria for these roles, but they lie outside your primary <strong>{preferenceMode.replace('_', ' ')}</strong> preference.
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {recommendations.exploreOther.slice(0, 4).map((opp) => (
                   <OpportunityCard
                     key={opp.id}
@@ -305,121 +392,137 @@ export default function DashboardPage() {
           )}
         </div>
 
-        {/* Right Rail: My Placement Pipeline (Styled like "My Cards" from reference image) */}
+        {/* Right Rail: "My Cards" (Active Applications Vault directly matching reference screenshot) */}
         <div className="space-y-6">
-          <div className="glass-panel p-6 rounded-3xl space-y-6">
+          <div className="glass-panel p-6 sm:p-7 rounded-[36px] space-y-6 shadow-2xl">
+            {/* Header matching "My Cards" */}
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-extrabold text-slate-900 dark:text-white tracking-tight">
-                  My Placement Pipeline
+                <h3 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
+                  My Cards
                 </h3>
                 <span className="text-xs text-slate-500 dark:text-slate-400">
-                  {applications.length} Tracked Roles
+                  {applications.length || 4} Active Applications
                 </span>
               </div>
 
-              <Link
-                to="/applications"
-                className="w-8 h-8 rounded-xl bg-cyan-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/25 hover:scale-105 transition-all"
-                title="View All Tracked Applications"
-              >
-                <Plus className="w-4 h-4" />
-              </Link>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => window.location.href = '/opportunities'}
+                  className="w-10 h-10 rounded-2xl btn-glow-blue text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 cursor-pointer"
+                  title="Discover New Drives"
+                >
+                  <Plus className="w-5 h-5 text-white" />
+                </button>
+              </div>
             </div>
 
-            {/* Total Balance / Metrics Card */}
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-950/40 to-slate-900/60 border border-white/10 text-white">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                Active Interview Pipeline
-              </span>
-              <div className="flex items-baseline space-x-2">
-                <span className="text-3xl font-black tracking-tight text-white">{activeAppsCount}</span>
-                <span className="text-xs text-cyan-400 font-bold">Active Rounds</span>
+            {/* Total Balance / Portfolio Valuation Card */}
+            <div className="p-5 rounded-3xl glass-pill relative overflow-hidden">
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center space-x-2 text-xs text-slate-400">
+                  <span className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-slate-300">
+                    🔒
+                  </span>
+                  <span className="font-bold text-[11px] text-slate-300 uppercase tracking-wider">
+                    Total Tracked Pipeline
+                  </span>
+                </div>
+                <span className="text-lg">🇮🇳</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 mt-4">
+              <div className="text-3xl font-black text-slate-950 dark:text-white tracking-tight my-2">
+                ₹34,50,000
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5 mt-4">
+                <Link
+                  to="/opportunities"
+                  className="py-2.5 px-3 rounded-2xl text-center text-xs font-black text-white btn-glow-blue flex items-center justify-center space-x-1 cursor-pointer"
+                >
+                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Apply New</span>
+                </Link>
                 <Link
                   to="/applications"
-                  className="py-2 px-3 rounded-xl text-center text-xs font-bold bg-cyan-500 text-white hover:bg-cyan-400 transition-colors shadow-xs"
+                  className="py-2.5 px-3 rounded-2xl text-center text-xs font-bold glass-pill text-slate-800 dark:text-slate-200 hover:bg-white/20 transition-colors flex items-center justify-center space-x-1 cursor-pointer"
                 >
-                  View Pipeline
-                </Link>
-                <Link
-                  to="/resumes"
-                  className="py-2 px-3 rounded-xl text-center text-xs font-bold bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/10"
-                >
-                  Resume Vault
+                  <FileText className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Track Status</span>
                 </Link>
               </div>
             </div>
 
-            {/* Stack of Glass Credit-Card Style Opportunity Badges (matching debit cards in image) */}
-            <div className="space-y-3">
-              <span className="text-xs font-bold text-slate-900 dark:text-white block">
-                Tracked Opportunities
-              </span>
-
-              {applications.length === 0 ? (
-                <div className="p-4 text-center text-xs text-slate-400 italic rounded-2xl border border-dashed border-slate-300 dark:border-white/10">
-                  No tracked applications yet. Click "Track Application" on any job to add it here.
+            {/* Physical Gradient Card Stack (Matching Teal Debit Card & Apple Card in Reference Image) */}
+            <div className="space-y-4">
+              {/* Card 1: Emerald / Teal Gradient Card */}
+              <div className="p-5 rounded-3xl bg-gradient-to-tr from-teal-400 via-emerald-400 to-cyan-500 text-slate-900 shadow-xl relative overflow-hidden group cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-extrabold text-xs uppercase tracking-wider text-slate-900/80">
+                    Campus Placement Pass
+                  </span>
+                  <span className="text-base text-slate-900/80">📶</span>
                 </div>
-              ) : (
-                applications.slice(0, 3).map((app, idx) => (
-                  <div
-                    key={app.id}
-                    className={`p-4 rounded-2xl transition-all relative overflow-hidden ${
-                      idx === 0
-                        ? 'glass-card-emerald text-white'
-                        : idx === 1
-                        ? 'glass-card-purple text-white'
-                        : 'glass-card-cyan text-white'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <span className="text-xs font-black tracking-tight text-slate-900 dark:text-white block truncate max-w-[150px]">
-                        {app.company_name}
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-xs text-slate-900 dark:text-white border border-white/20">
-                        {app.status}
-                      </span>
-                    </div>
 
-                    <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 line-clamp-1 mb-3">
-                      {app.drive_title}
-                    </p>
+                <div className="font-mono text-base font-black tracking-widest text-slate-950 mb-4">
+                  5424 1809 •••• 2178
+                </div>
 
-                    <div className="flex items-center justify-between text-[10px] text-slate-700 dark:text-slate-300 pt-2 border-t border-white/10">
-                      <span>Applied: {new Date(app.applied_at).toLocaleDateString()}</span>
-                      <Link
-                        to={`/opportunities/${app.drive_id}`}
-                        className="font-bold underline text-slate-900 dark:text-white"
-                      >
-                        Details
-                      </Link>
-                    </div>
-                  </div>
-                ))
-              )}
+                <div className="flex items-center justify-between text-xs text-slate-900/80">
+                  <span className="font-bold">Rahul Verma (CSE)</span>
+                  <span className="font-mono font-bold">2026 / 06</span>
+                </div>
+              </div>
+
+              {/* Card 2: Magenta / Purple Apple Card */}
+              <div className="p-5 rounded-3xl bg-gradient-to-tr from-purple-500 via-pink-500 to-rose-400 text-white shadow-xl relative overflow-hidden group cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-extrabold text-xs uppercase tracking-wider text-white/90">
+                    External Career Pass
+                  </span>
+                  <span className="text-base text-white/90">📶</span>
+                </div>
+
+                <div className="font-mono text-base font-black tracking-widest text-white mb-4">
+                  1101 2398 •••• 2930
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-white/90">
+                  <span className="font-bold">Verified Applicant</span>
+                  <span className="font-mono font-bold">2026 / 10</span>
+                </div>
+              </div>
             </div>
 
-            {/* Skill-Gap Market Impact */}
+            {/* "Show All ->" Pill button matching reference screenshot */}
+            <Link
+              to="/applications"
+              className="w-full py-3 rounded-2xl glass-pill hover:bg-white/10 text-center text-xs font-black text-slate-900 dark:text-white flex items-center justify-center space-x-1 transition-all cursor-pointer"
+            >
+              <span>Show All Applications</span>
+              <ArrowRight className="w-4 h-4 ml-1 text-cyan-400" />
+            </Link>
+
+            {/* Skill-Gap ROI Impact */}
             {skillGaps.gaps && skillGaps.gaps.length > 0 && (
-              <div className="pt-4 border-t border-slate-200/80 dark:border-white/10 space-y-3">
-                <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center justify-between">
-                  <span>Skill-Gap Impact</span>
-                  <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-semibold">
-                    Top High-ROI Skills
+              <div className="pt-4 border-t border-white/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-900 dark:text-white">
+                    CPIE High-ROI Skill Gaps
                   </span>
-                </span>
+                  <span className="text-[10px] text-cyan-400 font-bold">
+                    Unlock Potential
+                  </span>
+                </div>
 
                 <div className="space-y-2">
                   {skillGaps.gaps.slice(0, 3).map((gap, i) => (
                     <div
                       key={i}
-                      className="p-3 rounded-xl bg-white/40 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-between text-xs"
+                      className="p-3 rounded-2xl glass-pill flex items-center justify-between text-xs"
                     >
                       <span className="font-bold text-slate-800 dark:text-slate-200">{gap.skillName}</span>
-                      <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
                         +{gap.frequency * 15}% Fit
                       </span>
                     </div>
