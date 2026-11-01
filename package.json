@@ -1,0 +1,22 @@
+{
+  "name": "placewise",
+  "version": "1.0.0",
+  "description": "PlaceWise — Multi-College, Multi-Domain Career & Placement Intelligence Platform",
+  "scripts": {
+    "setup:db": "cd server && npm run db:setup",
+    "test": "cd server && npm test",
+    "build": "cd client && npm run build",
+    "server": "cd server && npm start",
+    "client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev"
+  },
+  "keywords": [
+    "career",
+    "placement",
+    "intelligence",
+    "cpie",
+    "full-stack"
+  ],
+  "author": "PlaceWise Engineering Team",
+  "license": "ISC"
+}

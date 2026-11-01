@@ -1,0 +1,33 @@
+{
+  "name": "placewise-server",
+  "version": "1.0.0",
+  "description": "PlaceWise - Backend API & Career Path Intelligence Engine (CPIE)",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:migrate": "node src/db/migrate.js",
+    "db:seed": "node src/db/seed.js",
+    "db:setup": "node src/db/setup.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "keywords": [
+    "career",
+    "placement",
+    "cpie",
+    "recommendation",
+    "eligibility"
+  ],
+  "author": "PlaceWise Engineering Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "mysql2": "^3.19.1"
+  }
+}
