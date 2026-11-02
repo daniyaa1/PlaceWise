@@ -1,0 +1,43 @@
+services:
+  # PlaceWise Backend REST API
+  - type: web
+    name: placewise-backend
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: placewise-mysql
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: placewise-mysql
+          property: port
+      - key: DB_USER
+        fromDatabase:
+          name: placewise-mysql
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: placewise-mysql
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: placewise-mysql
+          property: database
+
+databases:
+  # MySQL Database for PlaceWise
+  - name: placewise-mysql
+    plan: free
+    databaseName: placewise_db
+    user: placewise
