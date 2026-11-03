@@ -243,6 +243,42 @@
   transform: translateY(-1px);
 }
 
+/* =========================================================================
+   DASHBOARD ANIMATION SYSTEM
+   ========================================================================= */
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover lift + shimmer effect */
+.dash-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.10) 50%, transparent 60%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: background-position 0.65s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-5px) scale(1.015);
+}
+
+.dash-card:hover::after {
+  background-position: 200%;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
